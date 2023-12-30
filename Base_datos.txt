@@ -1,0 +1,197 @@
+
+
+CREATE TABLE provincias (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100)
+);
+
+
+INSERT INTO provincias (nombre) VALUES
+('Álava'),
+('Albacete'),
+('Alicante'),
+('Almería'),
+('Asturias'),
+('Ávila'),
+('Badajoz'),
+('Barcelona'),
+('Burgos'),
+('Cáceres'),
+('Cádiz'),
+('Cantabria'),
+('Castellón'),
+('Ciudad Real'),
+('Córdoba'),
+('Cuenca'),
+('Gerona'),
+('Granada'),
+('Guadalajara'),
+('Guipúzcoa'),
+('Huelva'),
+('Huesca'),
+('Islas Baleares'),
+('Jaén'),
+('La Coruña'),
+('La Rioja'),
+('Las Palmas'),
+('León'),
+('Lérida'),
+('Lugo'),
+('Madrid'),
+('Málaga'),
+('Murcia'),
+('Navarra'),
+('Orense'),
+('Palencia'),
+('Pontevedra'),
+('Salamanca'),
+('Santa Cruz de Tenerife'),
+('Segovia'),
+('Sevilla'),
+('Soria'),
+('Tarragona'),
+('Teruel'),
+('Toledo'),
+('Valencia'),
+('Valladolid'),
+('Vizcaya'),
+('Zamora'),
+('Zaragoza');
+
+
+CREATE TABLE usuarios (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50),
+    contraseña VARCHAR(20),
+    rol VARCHAR(50)
+);
+
+
+-- Insertar un administrador
+INSERT INTO usuarios (nombre, contraseña, rol)
+VALUES ('Admin', '1234', 'administrador'),
+	('Admin2', '1234', 'administrador');
+
+-- Insertar usuarios con rol "usuario" y contraseña "1234"
+INSERT INTO usuarios (nombre, contraseña, rol)
+VALUES ('User1', '1234', 'usuario'),
+       ('User2', '1234', 'usuario'),
+       ('User3', '1234', 'usuario'),
+       ('User4', '1234', 'usuario'),
+       ('User5', '1234', 'usuario'),
+       ('User6', '1234', 'usuario'),
+       ('User7', '1234', 'usuario'),
+       ('User8', '1234', 'usuario'),
+       ('User9', '1234', 'usuario'),
+       ('User10', '1234', 'usuario'),
+       ('User11', '1234', 'usuario'),
+       ('User12', '1234', 'usuario'),
+       ('User13', '1234', 'usuario'),
+       ('User14', '1234', 'usuario'),
+       ('User15', '1234', 'usuario'),
+       ('User16', '1234', 'usuario'),
+       ('User17', '1234', 'usuario'),
+       ('User18', '1234', 'usuario'),
+       ('User19', '1234', 'usuario'),
+       ('User20', '1234', 'usuario');
+
+
+CREATE TABLE inmobiliarias (
+    id_inmobiliaria INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50),
+    email VARCHAR(100),
+    id_usuario INT,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
+);
+
+
+-- Insertar inmobiliarias con id_usuario correspondiente
+INSERT INTO inmobiliarias (nombre, email, id_usuario)
+VALUES ('Inmobiliaria1', 'info1@inmobiliaria.com', 1),
+       ('Inmobiliaria2', 'info2@inmobiliaria.com', 2),
+       ('Inmobiliaria3', 'info3@inmobiliaria.com', 3),
+       ('Inmobiliaria4', 'info4@inmobiliaria.com', 4),
+       ('Inmobiliaria5', 'info5@inmobiliaria.com', 5),
+       ('Inmobiliaria6', 'info6@inmobiliaria.com', 6),
+       ('Inmobiliaria7', 'info7@inmobiliaria.com', 7),
+       ('Inmobiliaria8', 'info8@inmobiliaria.com', 8),
+       ('Inmobiliaria9', 'info9@inmobiliaria.com', 9),
+       ('Inmobiliaria10', 'info10@inmobiliaria.com', 10),
+       ('Inmobiliaria11', 'info11@inmobiliaria.com', 11),
+       ('Inmobiliaria12', 'info12@inmobiliaria.com', 12),
+       ('Inmobiliaria13', 'info13@inmobiliaria.com', 13),
+       ('Inmobiliaria14', 'info14@inmobiliaria.com', 14),
+       ('Inmobiliaria15', 'info15@inmobiliaria.com', 15),
+       ('Inmobiliaria16', 'info16@inmobiliaria.com', 16),
+       ('Inmobiliaria17', 'info17@inmobiliaria.com', 17),
+       ('Inmobiliaria18', 'info18@inmobiliaria.com', 18),
+       ('Inmobiliaria19', 'info19@inmobiliaria.com', 19),
+       ('Inmobiliaria20', 'info20@inmobiliaria.com', 20),
+       ('Inmobiliaria21', 'info21@inmobiliaria.com', 1),
+       ('Inmobiliaria22', 'info22@inmobiliaria.com', 2),
+       ('Inmobiliaria23', 'info23@inmobiliaria.com', 3),
+       ('Inmobiliaria24', 'info24@inmobiliaria.com', 4),
+       ('Inmobiliaria25', 'info25@inmobiliaria.com', 5),
+       ('Inmobiliaria26', 'info26@inmobiliaria.com', 6),
+       ('Inmobiliaria27', 'info27@inmobiliaria.com', 7),
+       ('Inmobiliaria28', 'info28@inmobiliaria.com', 8),
+       ('Inmobiliaria29', 'info29@inmobiliaria.com', 9),
+       ('Inmobiliaria30', 'info30@inmobiliaria.com', 10);
+
+
+CREATE TABLE inmuebles (
+    id_inmueble INT AUTO_INCREMENT PRIMARY KEY,
+    tipo VARCHAR(50),
+    metros VARCHAR(20),
+    precio INT,
+    id_inmobiliaria INT,
+    id_provincia INT,
+    FOREIGN KEY (id_inmobiliaria) REFERENCES inmobiliarias(id_inmobiliaria),
+    FOREIGN KEY (id_provincia) REFERENCES provincias(id)
+);
+
+
+INSERT INTO inmuebles (tipo, metros, precio, id_inmobiliaria, id_provincia)
+VALUES 
+('Casa baja', '200', 250000, 1, 1),
+('Piso', '80', 120000, 2, 2),
+('Chalet', '150', 180000, 3, 3),
+('Piso', '100', 135000, 4, 4),
+('Ático-dúplex', '180', 210000, 5, 5),
+('Oficina', '75', 110000, 6, 6),
+('Casa', '220', 280000, 7, 7),
+('Piso', '90', 125000, 8, 8),
+('Chalet', '160', 190000, 9, 9),
+('Dúplex', '85', 130000, 10, 10),
+('Casa baja', '210', 260000, 11, 11),
+('Piso', '95', 140000, 12, 12),
+('Chalet', '170', 200000, 13, 13),
+('Piso', '88', 128000, 14, 14),
+('Ático-dúplex', '190', 220000, 15, 15),
+('Oficina', '78', 115000, 16, 16),
+('Casa baja', '230', 290000, 17, 17),
+('Piso', '92', 132000, 18, 18),
+('Chalet', '175', 205000, 19, 19),
+('Piso', '82', 118000, 20, 20),
+('Casa baja', '205', 255000, 1, 1),
+('Piso', '87', 126000, 2, 2),
+('Chalet', '155', 185000, 3, 3),
+('Piso', '105', 138000, 4, 4),
+('Ático-dúplex', '183', 213000, 5, 5),
+('Oficina', '79', 112000, 6, 6),
+('Casa baja', '225', 283000, 7, 7),
+('Piso', '91', 127000, 8, 8),
+('Chalet', '163', 193000, 9, 9),
+('Piso', '83', 131000, 10, 10),
+('Casa baja', '215', 263000, 11, 11),
+('Piso', '97', 142000, 12, 12),
+('Chalet', '173', 203000, 13, 13),
+('Piso', '90', 130000, 14, 14),
+('Ático-dúplex', '195', 223000, 15, 15),
+('Oficina', '80', 117000, 16, 16),
+('Casa baja', '235', 293000, 17, 17),
+('Piso', '95', 134000, 18, 18),
+('Chalet', '180', 207000, 19, 19),
+('Piso', '85', 120000, 20, 20);
+
+
